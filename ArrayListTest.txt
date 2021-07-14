@@ -1,0 +1,102 @@
+import java.util.*;
+import java.util.stream.Stream;
+class AlbumComparator implements Comparator<Song>{
+
+	@Override
+	public int compare(Song o1, Song o2) {
+		System.out.println("Comparing "+o1.getAlbum()+" to "+o2.getAlbum());
+		return o1.getAlbum().compareTo(o2.getAlbum());
+	}
+}
+
+class ArtistComparator implements Comparator<Song>{
+
+	@Override
+	public int compare(Song o1, Song o2) {
+		System.out.println("Comparing "+o1.getArtist()+" to "+o2.getArtist());
+		return o1.getArtist().compareTo(o2.getArtist());
+	}
+	
+}
+
+class TitleComparator implements Comparator<Song>{
+
+	@Override
+	public int compare(Song o1, Song o2) {
+		System.out.println("Comparing "+o1.getTitle()+" to "+o2.getTitle());
+		return o1.getTitle().compareTo(o2.getTitle());
+	}
+}
+
+class YearComparator implements Comparator<Song>
+{
+	public int compare(Song o1, Song o2) {
+		System.out.println("Comparing "+o1.getYear()+" with "+o2.getYear());
+		return Integer.compare(o1.getYear(), o2.getYear());
+	}
+}
+public class ArrayListTest {
+	public static void main(String[] args) {
+		Song s1 = new Song("My Heart Will Go On", "Celine D", "Titanic", 1996);
+		Song s2 = new Song("Zhingat", "Ajay Atul", "Sairat", 2016);
+		Song s3 = new Song("I want it that way", "Backstreet boys", "BB", 2000);
+		Song s4 = new Song("Kolavari", "Dhanush", "Three", 2014);
+		Song s5 = new Song("Lungi Dance", "Honey singh", "Chennai Express", 2019);
+		
+		ArrayList<Song> myJukeBox = new ArrayList<Song>();
+		myJukeBox.add(s1);myJukeBox.add(s2);myJukeBox.add(s3);
+		myJukeBox.add(s4);myJukeBox.add(s5);
+		
+		Scanner scan = new Scanner(System.in);
+		Comparator<Song> cmp = null;
+		int choice=0;
+		do {
+			System.out.println("Sort Menu");
+			System.out.println("1. Sort by Album");
+			System.out.println("2. Sort by Artist");
+			System.out.println("3. Sort by Title ");
+			System.out.println("4. Sort by Year");
+			System.out.println("Enter choice : ");
+			choice = scan.nextInt();
+			System.out.println("lets sort ..");
+			
+			
+			switch(choice) {
+			case 1:new AlbumComparator(); break;
+			case 2:new AlbumComparator(); break;
+			case 3:new ArtistComparator(); break;
+			case 4:new TitleComparator(); break;
+			case 5:break;
+			default:Collections.sort(myJukeBox); break;
+			}
+			
+			Collections.sort(myJukeBox , cmp);
+			System.out.println("Sorted .. ");
+			
+			
+			/*
+			Iterator<Song> songIterator = myJukeBox.iterator();
+			while(songIterator.hasNext()) {
+				Song theSong = songIterator.next();
+				System.out.println(theSong);
+			} 
+			
+			//code for for each loop 
+			
+			for (Song song : myJukeBox) {
+				System.out.println(song);
+				System.out.println("");
+			} 
+			
+			*/
+			
+			//Stream 
+			Stream<Song> stm  = myJukeBox.stream();
+			
+			stm.forEach(s->System.out.println(s));
+			
+			System.out.println("===============================================");
+		}while(choice!=5);
+		
+	}
+}
