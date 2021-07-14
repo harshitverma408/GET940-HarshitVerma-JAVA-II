@@ -62,12 +62,12 @@ public class ArrayListTest {
 			
 			
 			switch(choice) {
-			case 1:new AlbumComparator(); break;
-			case 2:new AlbumComparator(); break;
-			case 3:new ArtistComparator(); break;
-			case 4:new TitleComparator(); break;
+			case 1:cmp = new AlbumComparator(); break;
+			case 2:cmp = new AlbumComparator(); break;
+			case 3:cmp = new ArtistComparator(); break;
+			case 4:cmp = new TitleComparator(); break;
 			case 5:break;
-			default:Collections.sort(myJukeBox); break;
+			default:cmp = Collections.sort(myJukeBox); break;
 			}
 			
 			Collections.sort(myJukeBox , cmp);
