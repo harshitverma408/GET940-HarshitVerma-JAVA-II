@@ -1,0 +1,37 @@
+import java.io.BufferedReader;  
+import java.util.*;
+import java.io.FileReader;  
+import java.io.IOException;  
+
+public class MainClass{
+	public static void main(String[] args) {
+		ArrayList<String[]> Output = Reader.read();
+		System.out.println(Output.get(5)[3]);
+	}
+}
+
+class Reader  
+{  
+public static ArrayList<String[]> read()   
+{  
+String line = "";  
+String splitBy = ",(?=([^\\\"]*\\\"[^\\\"]*\\\")*[^\\\"]*$)";  
+try(BufferedReader br = new BufferedReader(new FileReader("D:\\Test.csv"));)  //parsing a CSV file into BufferedReader class constructor
+{  
+ArrayList<String[]> allComplaints = new ArrayList<>(); //Creating an ArrayList to store all rows
+
+while ((line = br.readLine()) != null)   //returns a Boolean value  
+{  
+String[] complaint = line.split(splitBy);    // use comma as separator  
+//System.out.println("Complaint [Date= " + complaint[0] + ", Product=" + complaint[1] + ", Sub-Product=" + complaint[2] + ", Issue=" + complaint[3] + ", Company= " + complaint[4] + ", State= " + complaint[5] +" Zip code= "+ complaint[6] + " submitted= "+complaint[7]+" Date sent= "+ complaint[8] +" respond= "+complaint[9]+" "+complaint[10]+" "+complaint[11]+" "+complaint[12]+" "+complaint[13] );  
+allComplaints.add(complaint);
+}
+return allComplaints;
+}   
+catch (IOException e)   
+{  
+e.printStackTrace();
+return null;
+}  
+}  
+}  
